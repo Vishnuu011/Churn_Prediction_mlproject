@@ -1,0 +1,20 @@
+ipykernel
+pandas
+numpy
+matplotlib
+plotly
+seaborn
+scipy
+scikit-learn
+imblearn
+xgboost
+catboost
+lightgbm
+from_root
+evidently==0.2.8
+dill
+PyYAML
+python-multipart
+streamlit
+mlflow
+-e .
