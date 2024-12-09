@@ -1,0 +1,36 @@
+columns:
+  - customerID: category
+  - gender: category
+  - InternetService: category
+  - Contract: category
+  - tenure: int
+  - MonthlyCharges: float
+  - TotalCharges: float
+
+numerical_columns:
+  - tenure
+  - MonthlyCharges
+  - TotalCharges
+  
+drop_columns:
+  - 'customerID'
+
+ 
+
+categorical_columns:
+  - gender
+  - InternetService
+  - Contract
+  
+
+
+# for data transformation
+num_features:
+  - tenure
+  - MonthlyCharges
+  - TotalCharges
+
+or_columns:
+  - tenure
+  - MonthlyCharges
+  - TotalCharges
