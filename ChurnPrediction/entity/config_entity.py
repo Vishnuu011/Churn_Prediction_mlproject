@@ -24,3 +24,15 @@ class DataIngestionConfig:
     data_ingestion_train_file_path = os.path.join(data_ingestion_dir, DATA_INGESTION_DIR_NAME, TRAIN_FILE)
     data_ingestion_test_file_path = os.path.join(data_ingestion_dir, DATA_INGESTION_DIR_NAME, TEST_FILE)
     train_test_split_ratio : float = 0.2
+
+
+@dataclass
+class DataTansformationConfig:
+    data_transform_dir = os.path.join(training_pipeline_config.artifact_dir, DATA_TRANSFORMATION_DIR_NAME)
+    data_transform_train_file_path = os.path.join(data_transform_dir, DATA_TRANSFORMATION_TRANSFORMED_DIR_NAME, 
+                                                  TRAIN_FILE.replace("csv", "npy")) 
+    data_transform_test_file_path = os.path.join(data_transform_dir,DATA_TRANSFORMATION_TRANSFORMED_DIR_NAME, 
+                                                 TEST_FILE.replace("csv", "npy"))
+    transformed_object_file_path = os.path.join(data_transform_dir, DATA_TRANSFORMATION_OBJECT_DIR_NAME, PREPROSSER_OBJ_FILE_NAME)
+
+

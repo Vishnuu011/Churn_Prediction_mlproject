@@ -6,16 +6,13 @@ columns:
   - tenure: int
   - MonthlyCharges: float
   - TotalCharges: float
+  - Churn: category
 
 numerical_columns:
   - tenure
   - MonthlyCharges
   - TotalCharges
   
-drop_columns:
-  - 'customerID'
-
- 
 
 categorical_columns:
   - gender
@@ -31,6 +28,6 @@ num_features:
   - TotalCharges
 
 or_columns:
-  - tenure
-  - MonthlyCharges
-  - TotalCharges
+  - gender
+  - InternetService
+  - Contract

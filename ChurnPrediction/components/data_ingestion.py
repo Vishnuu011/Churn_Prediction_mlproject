@@ -29,7 +29,7 @@ class DataIngestion:
 
             data = pd.read_csv(DATA_URL)
             
-            data_selected = data[["customerID","gender","InternetService","Contract","tenure","MonthlyCharges","TotalCharges"]]
+            data_selected = data[["gender","InternetService","Contract","tenure","MonthlyCharges","TotalCharges","Churn"]]
             logging.info(data_selected)
             logging.info(f"Check data frame shape {data_selected.shape}")
             data_selected["TotalCharges"] = pd.to_numeric(data_selected["TotalCharges"], errors="coerce")
@@ -77,7 +77,7 @@ class DataIngestion:
             self.split_train_and_test(dataframe=dataframe)
 
             data_ingestion_artifact = DataIngestionArtifact(
-                trained_file_path=self.data_ingestion_config.data_ingestion_train_file_path,
+                train_file_path=self.data_ingestion_config.data_ingestion_train_file_path,
                 test_file_path=self.data_ingestion_config.data_ingestion_test_file_path
             )
             return data_ingestion_artifact
