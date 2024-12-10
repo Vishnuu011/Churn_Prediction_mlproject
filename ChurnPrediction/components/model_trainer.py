@@ -6,10 +6,6 @@ from typing import Tuple
 from dataclasses import dataclass
 from tqdm import tqdm
 
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.base import BaseEstimator, ClassifierMixin
-from sklearn.base import BaseEstimator, ClassifierMixin
-from sklearn.metrics import accuracy_score
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
