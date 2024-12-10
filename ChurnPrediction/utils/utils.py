@@ -5,6 +5,8 @@ from pandas import DataFrame
 import numpy as np
 import pickle
 import yaml
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import GridSearchCV
 
 from ChurnPrediction.logger import logging
 from ChurnPrediction.exception import CustomException
@@ -72,4 +74,36 @@ def write_yaml_file(file_path: str, content: object, replace: bool = False) -> N
             yaml.dump(content, file)
     except Exception as e:
         raise CustomException(e, sys) from e 
+    
+
+def evaluate_models(X_train, y_train,X_test,y_test,models,param):
+    try:
+        report = {}
+
+        for i in range(len(list(models))):
+            model = list(models.values())[i]
+            para=param[list(models.keys())[i]]
+
+            gs = GridSearchCV(model,para,cv=3)
+            gs.fit(X_train,y_train)
+
+            model.set_params(**gs.best_params_)
+            model.fit(X_train,y_train)
+
+            #model.fit(X_train, y_train)  # Train model
+
+            y_train_pred = model.predict(X_train)
+
+            y_test_pred = model.predict(X_test)
+
+            train_model_score = accuracy_score(y_train, y_train_pred)
+
+            test_model_score = accuracy_score(y_test, y_test_pred)
+
+            report[list(models.keys())[i]] = test_model_score
+
+        return report
+
+    except Exception as e:
+        raise CustomException(e, sys)    
 
