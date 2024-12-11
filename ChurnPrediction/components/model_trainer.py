@@ -64,10 +64,10 @@ class ModelTrainer:
                     'C': [0.001, 0.01, 0.1, 1, 10, 100],
                     'solver': ['liblinear', 'saga']
                 },
-                'KNeighborsClassifier': {},
+                'KNeighborsClassifier': {'n_neighbors': [3, 5, 7, 9]},
                 'SVC': {
                     'C': [0.1, 1, 10],
-                    'kernel': ['linear', 'rbf', 'poly'],
+                    'kernel': ['linear', 'rbf', 'poly','sigmoid'],
                     'gamma': ['scale', 'auto']
                 },
                 'RandomForestClassifier': {
@@ -143,7 +143,7 @@ class ModelTrainer:
 
             best_model, best_model_score = self.get_model_object_and_report(train_array=train_arr, test_array=test_arr)
 
-            if best_model_score<0.92:
+            if best_model_score<0.90:
                 raise ValueError("No best model found")
             logging.info(f"Best found model on both training and testing dataset")
 

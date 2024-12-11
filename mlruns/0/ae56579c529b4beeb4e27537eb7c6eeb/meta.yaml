@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/HP/Desktop/Churn_Prediction_mlproject/Churn_Prediction_mlproject/mlruns/0/ae56579c529b4beeb4e27537eb7c6eeb/artifacts
+end_time: 1733902650289
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ae56579c529b4beeb4e27537eb7c6eeb
+run_name: skillful-pig-411
+run_uuid: ae56579c529b4beeb4e27537eb7c6eeb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1733902639986
+status: 3
+tags: []
+user_id: HP

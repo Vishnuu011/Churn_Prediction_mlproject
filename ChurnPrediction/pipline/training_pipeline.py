@@ -9,6 +9,7 @@ from ChurnPrediction.constants import *
 from ChurnPrediction.components.data_ingestion import DataIngestion
 from ChurnPrediction.components.data_tansformation import DataTransformation
 from ChurnPrediction.components.model_trainer import ModelTrainer
+from ChurnPrediction.components.model_evaluation import ModelEvaluation
 from ChurnPrediction.entity.config_entity import DataIngestionConfig, DataTansformationConfig, ModelTrainerConfig
 from ChurnPrediction.entity.artifact_entity import DataIngestionArtifact, DataTransformationArifact, ModelTrainerArtifact
 
@@ -52,7 +53,14 @@ class TrainPipeline:
             model_artifact = model_trainer.initiate_model_trainer()
             return model_artifact
         except Exception as e:
-            raise CustomException(e, sys)          
+            raise CustomException(e, sys)
+
+    def start_model_evaluation(self, data_transformation_artifact : DataTransformationArifact) -> None:
+        try:
+            model_trainer = ModelEvaluation(data_transformation_arifact=data_transformation_artifact)
+            model_evaluation = model_trainer.initiate_model_evaluation()
+        except Exception as e:
+            raise CustomException(e, sys)                   
         
 
     def run_pipeline(self, ) -> None:

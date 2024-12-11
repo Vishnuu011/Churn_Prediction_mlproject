@@ -17,4 +17,6 @@ PyYAML
 python-multipart
 streamlit
 mlflow
+dagshub
+
 -e .
