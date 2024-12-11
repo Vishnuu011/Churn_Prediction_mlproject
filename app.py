@@ -1,8 +1,8 @@
 import streamlit as st
-import sklearn
+
 import pandas as pd
-import numpy as np
-import pickle
+
+
 
 from ChurnPrediction.exception import CustomException
 import sys
@@ -34,12 +34,12 @@ class CustomData:
     def get_data_as_data_frame(self):
         try:
             custom_data_input_dict = {
-                "person_age": [self.gender],
-                "person_gender": [self.InternetService],
-                "person_education": [self.Contract],
-                "person_income": [self.tenure],
-                "person_emp_exp": [self.MonthlyCharges],
-                "person_home_ownership": [self.TotalCharges]
+                "gender": [self.gender],
+                "InternetService": [self.InternetService],
+                "Contract": [self.Contract],
+                "tenure": [self.tenure],
+                "MonthlyCharges": [self.MonthlyCharges],
+                "TotalCharges": [self.TotalCharges]
             }
 
             return pd.DataFrame(custom_data_input_dict, index=[0])
@@ -62,13 +62,15 @@ with st.form(key="my_form"):
     ) 
     submitted = st.form_submit_button("Submit")
 
-prediction = predictPipline().predict(data)
+data = data.get_data_as_data_frame()
+prediction = predictPipline()
+prediction = prediction.predict(data)
 
 st.header("Prediction Result")
 if prediction[0] == 0:
-    st.success("This customer is likely to stay.")
+    st.success("**This customer is likely to stay.**")
 else:
-    st.error("This customer is likely to churn.")
+    st.error("**This customer is likely to churn.**")
 
 
     
