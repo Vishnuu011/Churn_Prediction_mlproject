@@ -55,14 +55,7 @@ class TrainPipeline:
         except Exception as e:
             raise CustomException(e, sys)
 
-    def start_model_evaluation(self, data_transformation_artifact : DataTransformationArifact) -> None:
-        try:
-            model_trainer = ModelEvaluation(data_transformation_arifact=data_transformation_artifact)
-            model_evaluation = model_trainer.initiate_model_evaluation()
-        except Exception as e:
-            raise CustomException(e, sys)                   
-        
-
+    
     def run_pipeline(self, ) -> None:
         
        try:
