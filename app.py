@@ -63,6 +63,7 @@ with st.form(key="my_form"):
     submitted = st.form_submit_button("Submit")
 
 data = data.get_data_as_data_frame()
+data_reshaped = data.values.reshape(1, -1)
 prediction = predictPipline()
 prediction = prediction.predict(data)
 
