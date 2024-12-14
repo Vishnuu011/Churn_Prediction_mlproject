@@ -1,5 +1,5 @@
 import streamlit as st
-
+import pickle
 import pandas as pd
 
 
@@ -72,6 +72,8 @@ if prediction[0] == 0:
     st.success("**This customer is likely to stay.**")
 else:
     st.error("**This customer is likely to churn.**")
+
+   
 
 
     

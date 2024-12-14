@@ -16,15 +16,16 @@ class predictPipline:
     def predict(self, feature):
 
         try:
-            with open("save_objects_arifact\model.pkl", 'rb') as file:
+            with open("save_objects_artifact\model.pkl", 'rb') as file:
               model = pickle.load(file)
 
 
-            with open('save_objects_atifact\proprocessor.pkl', 'rb') as file:
+            with open('save_objects_artifact\preprocesser.pkl', 'rb') as file:
               preposser =pickle.load(file)
 
             scaled_data = preposser.transform(feature)
             preds = model.predict(scaled_data)
+            
 
             return preds
 
