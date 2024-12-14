@@ -24,7 +24,12 @@ warnings.filterwarnings("ignore")
 
 @dataclass
 class DatatransformationObj:
-    preprocessor_obj_file_path=os.path.join('save_objects_atifact',"proprocessor.pkl")
+    preprocessor_obj_file_path=os.path.join('save_objects_artifact',"preprocesser.pkl")
+
+@dataclass 
+class Datatransformationdataobj:
+    data_obj = os.path.join("npydata", TRAIN_FILE.replace("csv", "npy")) 
+    test_obj = os.path.join("npydata", TEST_FILE.replace("csv", "npy"))    
 
 
 class DataTransformation:
@@ -37,6 +42,7 @@ class DataTransformation:
             self.data_tansformation_config = data_transformation_config
             self._schema_config = read_yaml(file_path=SCHEMA_FILE_PATH)
             self.data_transform_obj = DatatransformationObj()
+            self.npy_data_obj = Datatransformationdataobj()
         except Exception as e:
             raise CustomException(e, sys)
         
@@ -166,6 +172,16 @@ class DataTransformation:
 
             save_numpy_array(
                 self.data_tansformation_config.data_transform_test_file_path,
+                test_arr
+            )
+
+            save_numpy_array(
+                self.npy_data_obj.data_obj,
+                train_arr
+            )
+
+            save_numpy_array(
+                self.npy_data_obj.test_obj,
                 test_arr
             )
 

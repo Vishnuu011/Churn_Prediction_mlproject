@@ -53,7 +53,7 @@ st.title("Customer Churn Prediction App")
 st.header("Enter Customer Information")
 with st.form(key="my_form"):
     data=CustomData(
-        gender=st.selectbox("Contract", ('Male', 'Female')),
+        gender=st.selectbox("gender", ('Male', 'Female')),
         InternetService=st.selectbox("Internet Service", ('DSL', 'Fiber optic', 'No')),
         Contract=st.selectbox("Contract", ('Month-to-month', 'One year', 'Two year')),
         tenure=st.number_input("Tenure (in months)", min_value=0, max_value=100, value=1),

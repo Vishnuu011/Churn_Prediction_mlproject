@@ -13,6 +13,8 @@ from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import GridSearchCV
 from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier
 
@@ -29,7 +31,7 @@ warnings.filterwarnings('ignore')
 
 @dataclass
 class ModelTrainerObj:
-    trained_model_file_path=os.path.join("save_objects_arifact","model.pkl")
+    trained_model_file_path=os.path.join("save_objects_artifact","model.pkl")
 
 
 class ModelTrainer:
@@ -42,7 +44,7 @@ class ModelTrainer:
             self.model_trainer_config = model_trainer_config
             self.model_obj_save = ModelTrainerObj()
         except Exception as e:
-            raise CustomException(e, sys)  
+            raise CustomException(e, sys) 
 
 
     def get_model_object_and_report(self, train_array: np.array, test_array: np.array)->Tuple[object, object]:
@@ -59,48 +61,48 @@ class ModelTrainer:
 
             param_grids = {
                 'LogisticRegression': {
-                    "class_weight":["balanced"],
-                    'penalty': ['l1', 'l2'],
+                'class_weight':["balanced"],
+                'penalty': ['l1', 'l2'],
                     'C': [0.001, 0.01, 0.1, 1, 10, 100],
                     'solver': ['liblinear', 'saga']
                 },
                 'KNeighborsClassifier': {'n_neighbors': [3, 5, 7, 9]},
                 'SVC': {
-                    'C': [0.1, 1, 10],
-                    'kernel': ['linear', 'rbf', 'poly','sigmoid'],
-                    'gamma': ['scale', 'auto']
+                'C': [0.1, 1, 10],
+                'kernel': ['linear', 'rbf', 'poly','sigmoid'],
+                'gamma': ['scale', 'auto']
                 },
                 'RandomForestClassifier': {
-                    'n_estimators': [50, 100, 200],
-                    'max_depth': [None, 10, 20, 30],
-                    'min_samples_split': [2, 5],
-                    'min_samples_leaf': [1, 2]
+                'n_estimators': [50, 100, 200],
+                'max_depth': [None, 10, 20, 30],
+                'min_samples_split': [2, 5],
+                'min_samples_leaf': [1, 2]
                 },
                 'GradientBoostingClassifier': {
-                    'n_estimators': [100, 200],
-                    'learning_rate': [0.01, 0.1],
-                    'max_depth': [3, 5],
-                    'min_samples_split': [2]
+                'n_estimators': [100, 200],
+                'learning_rate': [0.01, 0.1],
+                'max_depth': [3, 5],
+                'min_samples_split': [2]
                 },
                 'AdaBoostClassifier': {
-                    'n_estimators': [50, 100],
-                    'learning_rate': [0.01, 0.1]
+                'n_estimators': [50, 100],
+                'learning_rate': [0.01, 0.1]
                 },
                 'DecisionTreeClassifier': {
-                    'criterion': ['gini', 'entropy'],
-                    'max_depth': [None, 10, 20],
-                    'min_samples_split': [2]
+                'criterion': ['gini', 'entropy'],
+                'max_depth': [None, 10, 20],
+                'min_samples_split': [2]
                 },
                 'GaussianNB': {},
                 'XGBClassifier': {
-                   'n_estimators': [100, 200],
-                   'learning_rate': [0.01, 0.1],
-                   'max_depth': [3, 6]
+                'n_estimators': [100, 200],
+                'learning_rate': [0.01, 0.1],
+                'max_depth': [3, 6]
                 },
                 'LGBMClassifier': {
-                    'n_estimators': [100, 200],
-                    'learning_rate': [0.01, 0.1],
-                    'num_leaves': [31, 63]
+                'n_estimators': [100, 200],
+                'learning_rate': [0.01, 0.1],
+                'num_leaves': [31, 63]
                 }
             }
 

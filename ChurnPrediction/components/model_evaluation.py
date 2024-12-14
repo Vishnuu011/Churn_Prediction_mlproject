@@ -50,7 +50,7 @@ class ModelEvaluation:
                 test_arr[:,-1]
             )
 
-            with open("save_objects_arifact\model.pkl", "rb") as file:
+            with open("save_objects_artifact\model.pkl", "rb") as file:
                 model = pickle.load(file)
             
 

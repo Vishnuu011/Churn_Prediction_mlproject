@@ -54,6 +54,18 @@ class TrainPipeline:
             return model_artifact
         except Exception as e:
             raise CustomException(e, sys)
+        
+
+    def start_model_evaluation(self, ) ->None:
+        try:
+            train = os.path.join("npydata", "train.npy")
+            test = os.path.join("npydata", "test.npy")
+            model_evaluation = ModelEvaluation()
+            model_evaluation.initiate_model_evaluation(train_arr=train, test_arr=test)
+            
+        except Exception as e:
+            raise CustomException(e, sys)
+    
 
     
     def run_pipeline(self, ) -> None:
@@ -62,5 +74,6 @@ class TrainPipeline:
           data_ingestion_artifact = self.start_data_ingestion()
           data_transformation_artifact = self.start_data_tansformation(data_ingestion_artifact=data_ingestion_artifact)
           model_trainer = self.start_model_trainer(data_transformation_artifact=data_transformation_artifact)
+          model_evaluation = self.start_model_evaluation()
        except Exception as e:
            raise CustomException(e, sys)    
